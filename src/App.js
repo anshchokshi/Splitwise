@@ -126,7 +126,7 @@ export default class App extends Component {
     const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
     const checkedIcon = <CheckBoxIcon fontSize="small" />;
     return (
-      <div flexGrow="1">
+      <div flexGrow="1" align="center">
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Typography variant="h6" align="center" bold="yes">
@@ -369,14 +369,21 @@ export default class App extends Component {
             </ListGroup>
           </Grid>
         </Grid>
-        <ListGroup>
-          {this.state.transactions.length == 0 && <div></div>}
-          {this.state.transactions.length > 0 &&
-            this.state.transactions.map((data, index) => {
-              //var item = data.data();
-              return <ListGroup.Item>{data}</ListGroup.Item>;
-            })}
-        </ListGroup>
+        <br></br>
+        <Grid container xs={12} align="center">
+          <Grid container item md={4}></Grid>
+          <Grid container item md={4}>
+            <ListGroup>
+              {this.state.transactions.length == 0 && <div></div>}
+              {this.state.transactions.length > 0 &&
+                this.state.transactions.map((data, index) => {
+                  //var item = data.data();
+                  return <ListGroup.Item>{data}</ListGroup.Item>;
+                })}
+            </ListGroup>
+          </Grid>
+          <Grid container item md={4}></Grid>
+        </Grid>
       </div>
     );
   }
