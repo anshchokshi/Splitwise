@@ -25,6 +25,7 @@ const Join = () => {
       .catch((e) => {
         setErrors(e.message);
       });
+    history.push("/login");
   };
 
   return (
@@ -60,7 +61,7 @@ const Join = () => {
         <button
           className="c_button"
           type="submit"
-          //onClick={() => history.push("/")}
+          //onClick={() => history.push("/login")}
           //onSubmit={() => history.push("/")}
         >
           submit
