@@ -48,11 +48,24 @@ export const simplify = (expenses) => {
 
   for (let person1 in paidto) {
     for (let person2 in paidfrom) {
-      if (paidto[person1] >= paidfrom[person2])
+      if (paidto[person1] >= paidfrom[person2]) {
         console.log(person1, "owes", person2, paidfrom[person2]);
-      lst.push(`${person1} owes ${person2} amount ${paidfrom[person2]}`);
-      paidto[person1] -= paidfrom[person2];
-      paidfrom[person2] = 0;
+        if (paidfrom[person2] > 0) {
+          lst.push(`${person1} owes ${person2} amount ${paidfrom[person2]}`);
+        }
+
+        paidto[person1] -= paidfrom[person2];
+
+        paidfrom[person2] = 0;
+      } else {
+        console.log(person1, "owes", person2, paidto[person1]);
+        if (paidto[person1] > 0) {
+          lst.push(`${person1} owes ${person2} amount ${paidto[person1]}`);
+        }
+
+        paidfrom[person2] -= paidto[person1];
+        paidto[person1] = 0;
+      }
     }
   }
   return lst;
