@@ -34,26 +34,37 @@ class Groups extends Component {
       groups: [],
       name: null,
       show: null,
+      user1: null,
+      user: firebase.auth().currentUser,
     };
   }
 
   componentDidMount() {
-    const user = firebase.auth().currentUser;
     const { location, history } = this.props;
 
-    firebase
-      .firestore()
-      .collection("groups")
-      .where("friends", "array-contains", firebase.auth().currentUser.email)
-      .onSnapshot((querySnapshot) => {
-        var items = [];
-        querySnapshot.forEach(function (doc) {
-          debugger;
-          items.push(doc);
-        });
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        firebase
+          .firestore()
+          .collection("groups")
+          .where("friends", "array-contains", user.email)
+          .onSnapshot((querySnapshot) => {
+            var items = [];
+            querySnapshot.forEach(function (doc) {
+              debugger;
+              items.push(doc);
+            });
 
-        this.setState({ groups: items });
-      });
+            this.setState({ groups: items, user: user });
+          });
+      } else {
+        this.setState({ user: null });
+      }
+
+      if (this.state.loading) {
+        this.setState({ loading: false });
+      }
+    });
 
     history.listen((newLocation, action) => {
       if (action !== "PUSH") {

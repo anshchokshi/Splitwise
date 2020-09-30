@@ -14,7 +14,6 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Checkbox from "@material-ui/core/Checkbox";
 import * as firebase from "firebase/app";
-import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
 import PopoverContent from "react-bootstrap/PopoverContent";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
